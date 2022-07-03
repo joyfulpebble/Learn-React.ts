@@ -1,4 +1,4 @@
-import React, {FC} from 'react'
+import React from 'react'
 
 interface TetragonProps {
   width: number,
@@ -8,9 +8,15 @@ interface TetragonProps {
   onClick: () => void,
 }
 
-const Tetragon: FC<TetragonProps> = ({width, height, background, children, onClick}) => {
+const Tetragon = ({width, height, background, children, onClick}: TetragonProps) => {
   return (
-    <div style={{width: `${width}px`, height: `${height}px`, background: `${background}`}} onClick={onClick}>
+    <div style={{
+      width: `${width}px`, 
+      height: `${height}px`, 
+      background: `${background}`}} 
+      onClick={() => onClick()}
+      >
+
       {children}
     </div>
   )
