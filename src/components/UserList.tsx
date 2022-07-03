@@ -4,7 +4,6 @@ import UserItem from './UserItem';
 
 interface UserListProps{
   users: IUser[];
-
 }
 
 const UserList: FC<UserListProps> = ({users}) => {

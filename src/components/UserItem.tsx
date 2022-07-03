@@ -3,7 +3,6 @@ import { IUser } from '../types/Types';
 
 interface UserListProps{
   user: IUser;
-
 }
 
 const UserItem: FC<UserListProps> = ({user}) => {

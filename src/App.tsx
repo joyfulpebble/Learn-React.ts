@@ -1,34 +1,26 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios'
 import UserList from './components/UserList';
 import { IUser } from './types/Types';
 
 function App() {
-  const arr: IUser[] = [
-    {
-      "id": 1,
-      "name": "Leanne Graham",
-      "email": "Sincere@april.biz",
-      "address": {
-        "street": "Kulas Light",
-        "city": "Gwenborough",
-        "zipcode": "92998-3874",
-        }
-      },
-      {
-      "id": 2,
-      "name": "Ervin Howell",
-      "email": "Shanna@melissa.tv",
-      "address": {
-        "street": "Victor Plains",
-        "city": "Wisokyburgh",
-        "zipcode": "90566-7771",
-      }
+  const [users, setUsers] = useState<IUser[]>([]);
+
+  async function getUsers() {
+    try {
+      const response = await axios.get<IUser[]>('https://jsonplaceholder.typicode.com/users');
+      setUsers(response.data);
+    } catch (error) {
+      alert(error)
     }
-  ]
+  }
+  useEffect(() => {
+    getUsers();
+  }, [])
 
   return (
     <div>
-        <UserList users={arr}/>
+        <UserList users={users}/>
     </div>
   );
 }
