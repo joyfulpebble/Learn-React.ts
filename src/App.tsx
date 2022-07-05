@@ -1,28 +1,42 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios'
 import UserList from './components/UserList';
-import { IUser } from './types/Types';
+import { ITodo, IUser } from './types/Types';
 import List from './components/List';
 import UserItem from './components/UserItem';
+import TodoItem from './components/TodoItem';
 
 function App() {
-  const [users, setUsers] = useState<IUser[]>([]);
+  // const [users, setUsers] = useState<IUser[]>([]);
+  const [todos, setTodos] = useState<ITodo[]>([]);
 
-  async function getUsers() {
+  // async function getUsers() {
+  //   try {
+  //     const response = await axios.get<IUser[]>('https://jsonplaceholder.typicode.com/users');
+  //     setUsers(response.data);
+  //   } catch (error) {
+  //     alert(error)
+  //   }
+  // }
+
+  async function getTodo() {
     try {
-      const response = await axios.get<IUser[]>('https://jsonplaceholder.typicode.com/users');
-      setUsers(response.data);
+      const response = await axios.get<ITodo[]>('https://jsonplaceholder.typicode.com/todos?_limit=10');
+      setTodos(response.data);
     } catch (error) {
       alert(error)
     }
   }
+
   useEffect(() => {
-    getUsers();
+    // getUsers();
+    getTodo();
   }, [])
 
   return (
     <div>
-        <List items={users} renderItem={ (user: IUser) => <UserItem user={user} key={user.id}/>}/>
+        {/* <List items={users} renderItem={ (user: IUser) => <UserItem user={user} key={user.id}/>}/> */}
+        <List items={todos} renderItem={(todo: ITodo) => <TodoItem todo={todo} key={todo.id}/>}/>
     </div>
   );
 }
