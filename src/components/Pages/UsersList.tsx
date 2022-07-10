@@ -1,5 +1,5 @@
 import React, { useState, useEffect} from 'react';
-import axois from 'axios';
+import axios from 'axios';
 import { IUser } from '../../types/Types';
 import UserItem from '../UserItem';
 import List from '../List';
@@ -9,7 +9,7 @@ export default function UserList() {
 
   async function getUsers() {
     try {
-      const response = await axois.get<IUser[]>('https://jsonplaceholder.typicode.com/users');
+      const response = await axios.get<IUser[]>('https://jsonplaceholder.typicode.com/users');
       setUsers(response.data);
     } catch (error) {
       alert(error)
